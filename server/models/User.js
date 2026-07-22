@@ -6,6 +6,16 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    lastName:{
+        type: String,
+        required: true,
+        trim: true,
+    },
+    secondLastName:{
+        type: String,
+        required: true,
+        trim: true,
+    },
     email: {
         type: String,
         required: true,
@@ -22,6 +32,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["user", "admin"],
         default: "user",
+    },
+    city:{
+        type: String,
+        required: true,
+        trim: true,
+    },
+    province: {
+        type: String,
+        required: true,
+        trim: true,
+    }
+    postcode:{
+        type: String,
+        required: true,
+        trim: true,
+        match: [/^\d{5}$/, "Please enter a valid 5-digit postcode"],
     },
 }, {
     timestamps: true,
