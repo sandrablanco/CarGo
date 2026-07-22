@@ -18,11 +18,12 @@ const carSchema = new moongose.Schema({
     fuelType: {
         type: String,
         required: true,
-        enum: ["Gasoline", "Diesel"],
+        enum: ["Gasoline", "Diesel", "Electric", "Hybrid"],
     },
-    price: {
+    pricePerDay: {
         type: Number,
         required: true,
+        min:0,
     },
     kilometers: {
         type: Number,
