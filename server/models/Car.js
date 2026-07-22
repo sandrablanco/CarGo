@@ -24,6 +24,10 @@ const carSchema = new moongose.Schema({
         type: Number,
         required: true,
     },
+    kilometers: {
+        type: Number,
+        required: true,
+    },
     image: {
         type: String,
         default: "https://res.cloudinary.com/dxjv0gq3f/image/upload/v1698231875/CarGo/default-car-image.jpg",
