@@ -1,7 +1,7 @@
 import Car from "../models/Car.js";
 
 export const getAllCars = async (req, res) => {
-    try {
+       try {
         const cars = await Car.find();
         res.status(200).json(cars);
     } catch (error) {

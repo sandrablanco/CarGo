@@ -31,11 +31,11 @@ const carSchema = new moongose.Schema({
     },
     image: {
         type: String,
-        default: "https://res.cloudinary.com/dxjv0gq3f/image/upload/v1698231875/CarGo/default-car-image.jpg",
+        default: " ",
     },  
     description: {
         type: String,
-        default: "No description provided.",
+        default: " ",
     },
 },
     {
