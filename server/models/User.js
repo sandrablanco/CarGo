@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-    }
+    },
     postcode:{
         type: String,
         required: true,
