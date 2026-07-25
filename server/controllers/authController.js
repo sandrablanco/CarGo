@@ -1,12 +1,12 @@
 import User from "../models/User.js";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 //Register a new user
 
 export const register = async (req, res) => {
     try {
-        const { firstName, secondName, firstLastName, secondLastName, email, password, role, city, province, postcode } = req.body;
+        const { name, lastName, secondLastName, email, password, role, city, province, postcode } = req.body;
 
         //Check if the user already exists
         const existingUser = await User.findOne({ email });
@@ -18,8 +18,8 @@ export const register = async (req, res) => {
 
     //Create a new user
     const newUser = new User({
-        firstName,
-        firstLastName,
+        name,
+        lastName,
         secondLastName,
         email,
         password: hashedPassword,
