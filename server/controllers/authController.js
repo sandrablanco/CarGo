@@ -43,9 +43,50 @@ export const register = async (req, res) => {
   }
 };
 
-// Login (de momento sencillo)
+// Login user
 export const login = async (req, res) => {
-  res.json({
-    message: "Login controller funcionando",
-  });
+  try {
+    const { email, password } = req.body;
+    //search user
+     const user = await User.findOne({ email });
+      if (!user) {
+      return res.status(400).json({
+        message: "Usuario no encontrado"
+      });
+    }
+    //compare password
+     const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Contraseña incorrecta"
+      });
+    }
+    //create token
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d"
+      }
+    );
+
+    res.status(200).json({
+      message: "Login correcto",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        role: user.role
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
 };
