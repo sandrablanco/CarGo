@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { login } from "../services/authService";
 
 function Login() {
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,7 +16,12 @@ function Login() {
         password,
       });
 
+     localStorage.setItem("token", response.data.token);
+     localStorage.setItem("user",JSON.stringify(response.data.user));
+
       console.log(response.data);
+
+      navigate("/");
 
     } catch (error) {
       console.error(error);
