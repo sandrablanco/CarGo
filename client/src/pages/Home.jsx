@@ -15,6 +15,13 @@ function Home() {
   }, []);
 
   return (
+    <>
+    <header>
+        <h1>🚗CarGo🚗</h1>
+      <p>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</p>
+        
+    </header>
+    <body>
     <div>
        <h2>Coches disponibles</h2>
        {cars.map((car) => (
@@ -29,6 +36,8 @@ function Home() {
          </div>
        ))}
     </div>
+    </body>
+    </>
   )
 }
 

@@ -1,21 +1,25 @@
-import { useState } from 'react'
-import Home from './pages/Home'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import "./App.css";
 
 function App() {
-	const [cars, setCars] = useState([]);
+  return (
+    <Router>
 
-	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/CarDetails/:id" element={<CarDetails />} />
-			</Routes>
-		</Router>
-	)
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+     </Routes>
+
+    </Router>
+  );
 }
 
 export default App;
