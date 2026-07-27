@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useState } from React;
+import { useEffect, useState } from "react";
 import { createBooking } from "../services/bookingService";
 import { useParams } from "react-router-dom";
+import { getCarById } from "../services/carService";
 
 function CarDetails() {
 

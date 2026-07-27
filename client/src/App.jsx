@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Booking from "./pages/Booking";
+import CarDetails from "./pages/CarDetails";
 import "./App.css";
 
 function App() {
