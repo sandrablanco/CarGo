@@ -13,7 +13,7 @@ export const getCarById = async (req, res) => {
     try {
         const car = await Car.findById(req.params.id);
         if (!car) {
-            return res.status(404).json({ message: "Car not found" });
+            return res.status(404).json({ message: "Coche no encontrado" });
         }
         res.status(200).json(car);
     } catch (error) {
@@ -27,7 +27,7 @@ export const createCar = async (req, res) => {
         const savedCar = await newCar.save();
         res.status(201).json(savedCar);
     } catch (error) {
-        res.status(500).json({ message: "Error creating car", error });
+        res.status(500).json({ message: "Error al crear el coche", error });
     }
 };
 
@@ -35,7 +35,7 @@ export const updateCar = async (req, res) => {
     try {
         const updatedCar = await Car.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedCar) {
-            return res.status(404).json({ message: "Car not found" });
+            return res.status(404).json({ message: "Coche no encontrado" });
         }
         res.status(200).json(updatedCar);
     } catch (error) {
@@ -47,9 +47,9 @@ export const deleteCar = async (req, res) => {
     try {
         const deletedCar = await Car.findByIdAndDelete(req.params.id);
         if (!deletedCar) {
-            return res.status(404).json({ message: "Car not found" });
+            return res.status(404).json({ message: "Coche no encontrado"})
         }
-        res.status(200).json({ message: "Car deleted successfully" });
+        res.status(200).json({ message: "Coche borrado exitosamente"})
     } catch (error) {
         res.status(500).json({ message: "Error deleting car", error });
     }

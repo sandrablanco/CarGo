@@ -1,5 +1,6 @@
 import Booking from "../models/Booking.js";
 import Car from "../models/Car.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 
 export const createBooking = async (req, res) => {
     try {
