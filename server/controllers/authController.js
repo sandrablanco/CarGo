@@ -78,9 +78,9 @@ export const login = async (req, res) => {
       message: "Login correcto",
       token,
       user: {
-        id: user._id,
-        name: user.name,
-        role: user.role
+      id: user._id,
+      name: user.name,
+      role: user.role
       }
     });
 
