@@ -10,4 +10,3 @@ export const getCars = async () => {
         throw error;
     }
 };
-
