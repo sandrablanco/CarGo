@@ -32,9 +32,7 @@ function Home() {
            <p>Año: {car.year}</p>
            <p>Tipo de combustible: {car.fuelType}</p>
            <p>Precio: {car.pricePerDay.toFixed(2)} €</p>
-           <button onClick={() => navigate(`/cars/${car._id}`)}>
-             Ver detalles
-           </button>
+           <button onClick={() => navigate(`/cars/${car._id}`)}>Reservar</button>
            <img src={car.image} alt={`${car.brand} ${car.model}`} width="200" />
            <p>{car.description}</p>
            <hr />
