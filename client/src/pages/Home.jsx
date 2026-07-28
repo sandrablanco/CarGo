@@ -1,7 +1,7 @@
-
- import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCars } from "../services/carService.js";
+
 
 function Home() {
   const [cars, setCars] = useState([]);
@@ -17,6 +17,7 @@ function Home() {
       });
   }, []);
 
+
   return (
     <>
     <header className="hero">
@@ -25,9 +26,9 @@ function Home() {
     <h2>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</h2>
     </div>
     </header>
-    <main>
-    <div>
+     <main>
        <h3>Coches disponibles</h3>
+       
        {cars.map((car) => (
          <div key={car._id}>
            <h4>{car.brand} {car.model}</h4>
@@ -45,10 +46,10 @@ function Home() {
            <br />
          </div>
        ))}
-    </div>
     </main>
     </>
   )
 }
 
-export default Home;
+export default Home
+
