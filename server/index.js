@@ -20,6 +20,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 
 
+
 app.get("/", (req, res) => {
   res.send("CarGo API IS RUNNING 🚗");
 });
