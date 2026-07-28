@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import { getCars } from "../services/carService.js";
+import { getWeather } from "../services/weatherService.js";
 
 
 function Home() {
   const [cars, setCars] = useState([]);
+  const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState("Madrid");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +20,14 @@ function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    getWeather(city)
+    .then((data) => {
+      setWeather(data);
+    })
+    .catch((error) => {console.error(error);
+  });
+  }, [city]);
 
   return (
     <>
@@ -26,7 +37,16 @@ function Home() {
     <h2>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</h2>
     </div>
     </header>
-     <main>
+    {weather && (
+      <div>
+        <h3>Tiempo en Madrid</h3>
+        <p>
+          Temperatura {weather.main.temp}
+        </p>
+        <p>Humedad {weather.main.humidity}</p>
+      </div>
+    )}
+    <main>
        <h3>Coches disponibles</h3>
        
        {cars.map((car) => (

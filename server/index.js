@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import carRoutes from "./routes/carRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import weatherRoutes from "./routes/weatherRoutes.js"
 import authMiddleware from "./middleware/authMiddleware.js";
 import bookingRoutes from "./routes/bookingRoutes.js"
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/cars", carRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/weather", weatherRoutes);
 
 
 

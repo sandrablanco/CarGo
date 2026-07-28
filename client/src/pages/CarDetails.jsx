@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { getCarById } from "../services/carService";
 
 function CarDetails() {
-
 const { id } = useParams();
 const [car, setCar] = useState(null);
 const [startDate, setStartDate] = useState("");
@@ -32,7 +31,7 @@ useEffect(() => {
       await createBooking(booking);
 
       alert("Reserva realizada correctamente");
-
+  
     } catch (error) {
       console.error(error);
       alert("Error al realizar la reserva");
