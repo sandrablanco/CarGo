@@ -19,17 +19,18 @@ function Home() {
 
   return (
     <>
-    <header>
-        <h1>🚗CarGo🚗</h1>
-      <p>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</p>
-        
+    <header className="hero">
+    <div className="logo-title">
+    <img src="/logo.png" alt="CarGo" className="logo" width="100" height="100"/>
+    <h2>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</h2>
+    </div>
     </header>
     <main>
     <div>
-       <h2>Coches disponibles</h2>
+       <h3>Coches disponibles</h3>
        {cars.map((car) => (
          <div key={car._id}>
-           <h3>{car.brand} {car.model}</h3>
+           <h4>{car.brand} {car.model}</h4>
            <p>Año: {car.year}</p>
            <p>Tipo de combustible: {car.fuelType}</p>
            <p>Precio: {car.pricePerDay.toFixed(2)} €</p>
