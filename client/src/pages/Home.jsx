@@ -21,7 +21,7 @@ function Home() {
     <>
     <header className="hero">
     <div className="logo-title">
-    <img src="/logo.png" alt="CarGo" className="logo" width="100" height="100"/>
+    <img src="/logo.png" alt="CarGo" className="logo" width="180" height="180"/>
     <h2>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</h2>
     </div>
     </header>
@@ -34,10 +34,15 @@ function Home() {
            <p>Año: {car.year}</p>
            <p>Tipo de combustible: {car.fuelType}</p>
            <p>Precio: {car.pricePerDay.toFixed(2)} €</p>
-           <button onClick={() => navigate(`/cars/${car._id}`)}>Reservar</button>
-           <img src={car.image} alt={`${car.brand} ${car.model}`} width="200" />
            <p>{car.description}</p>
+           <img src={car.image} alt={`${car.brand} ${car.model}`} width="250" />
+           <br />
+           <br />
+           <button onClick={() => navigate(`/cars/${car._id}`)}>Reservar</button>
+                     
            <hr />
+           <br />
+           <br />
          </div>
        ))}
     </div>
