@@ -37,7 +37,8 @@ useEffect(() => {
   
     } catch (error) {
       console.error(error);
-      alert("Error al realizar la reserva");
+
+      alert(error.response?.data?.message || "Error al realizar la reserva");
     }
   };
 

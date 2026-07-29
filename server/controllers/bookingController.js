@@ -13,33 +13,51 @@ export const createBooking = async (req, res) => {
        if (new Date(endDate) <= new Date(startDate)) {
         return res.status(400).json({message: "La fecha de fialización debe ser posterior a la fecha de inicio",});
        }
+       //check existing Booking
+       const existingBooking = await Booking.findOne({
+        car,
+        $or: [
+         {
+           startDate: { $lte: endDate },
+           endDate: { $gte: startDate }
+          }
+         ]
+        });
+        if (existingBooking) {
+           return res.status(400).json({
+             message: "Este coche ya está reservado para esas fechas."
+            });
+        }
        // days of booking
        const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
        // total price
        const totalPrice = days * selectedCar.pricePerDay;
        //create booking
        const booking = new Booking({
-    user: req.user.id,
-    car,
-    startDate,
-    endDate,
-    totalPrice,
-});
+          user: req.user.id,
+          car,
+          startDate,
+          endDate,
+          totalPrice,
+        });
 
-await booking.save();
-res.status(201).json({message: "Reserva creada correctamente", booking,});
+        await booking.save();
 
-await Car.findByIdAndUpdate(
-  booking.car,
-  {
-    available: false,
-  }
-);
+        await Car.findByIdAndUpdate(
+             booking.car,
+           {
+             available: false,
+            }
+          );
 
-} catch (error) {
-    res.status(500).json({
-        message: error.message,
-    });
-}
-};
+        res.status(201).json({
+            message: "Reserva creada correctamente",
+            booking,
+        });
  
+        } catch (error) {
+         res.status(500).json({
+          message: error.message,
+         });
+        }
+        };
