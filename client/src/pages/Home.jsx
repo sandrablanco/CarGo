@@ -74,9 +74,10 @@ function Home() {
            <p>Precio: {car.pricePerDay.toFixed(2)} €</p>
            <p>{car.description}</p>
            <img src={car.image} alt={`${car.brand} ${car.model}`} width="250" />
+           <p>Estado {car.available ? " 🟢 Disponible" : " 🔴 No disponible"}</p>
            <br />
            <br />
-           <button onClick={() => navigate(`/cars/${car._id}`)}>Reservar</button>
+           <button disable={!car.available} onClick={() => navigate(`/cars/${car._id}`)}>{car.available ? "Reservar" : "No disponible"} </button>
                      
            <hr />
            <br />

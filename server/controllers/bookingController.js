@@ -29,6 +29,13 @@ export const createBooking = async (req, res) => {
 await booking.save();
 res.status(201).json({message: "Reserva creada correctamente", booking,});
 
+await Car.findByIdAndUpdate(
+  booking.car,
+  {
+    available: false,
+  }
+);
+
 } catch (error) {
     res.status(500).json({
         message: error.message,

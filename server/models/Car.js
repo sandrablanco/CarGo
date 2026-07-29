@@ -37,6 +37,10 @@ const carSchema = new moongose.Schema({
         type: String,
         default: " ",
     },
+    available: {
+        type: Boolean,
+        default: true,
+    },
 },
     {
     timestamps: true,
