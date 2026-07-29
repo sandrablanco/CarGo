@@ -48,15 +48,7 @@ export const createBooking = async (req, res) => {
          if (
             today >= new Date(startDate) &&
             today <= new Date(endDate)
-          ) {
-
-             await Car.findByIdAndUpdate(
-               booking.car,
-               {
-                 available: false,
-                }
-              );
-            }
+          )             
 
         res.status(201).json({
             message: "Reserva creada correctamente",
