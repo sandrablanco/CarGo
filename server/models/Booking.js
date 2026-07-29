@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
+    surveyCompleted: {
+    type: Boolean,
+    default: false,
+    },
     totalPrice: {
         type: Number,
         required: true,
