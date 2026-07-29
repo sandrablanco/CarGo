@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { createBooking } from "../services/bookingService";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getCarById } from "../services/carService";
 
 function CarDetails() {
+const navigate = useNavigate();
 const { id } = useParams();
 const [car, setCar] = useState(null);
 const [startDate, setStartDate] = useState("");
@@ -31,6 +32,8 @@ useEffect(() => {
       await createBooking(booking);
 
       alert("Reserva realizada correctamente");
+
+      navigate("/");
   
     } catch (error) {
       console.error(error);

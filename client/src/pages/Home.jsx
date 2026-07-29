@@ -10,6 +10,13 @@ function Home() {
   const [city, setCity] = useState("Madrid");
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    navigate("/");
+  }; 
+
   useEffect(() => {
     getCars()
       .then((cars) => {
@@ -29,6 +36,7 @@ function Home() {
   });
   }, [city]);
 
+
   return (
     <>
     <header className="hero">
@@ -37,13 +45,22 @@ function Home() {
     <h2>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</h2>
     </div>
     </header>
+    <select value= {city} onChange={(e) => setCity(e.target.value)}>
+      <option value="Madrid">Madrid</option>
+      <option value="Bilbao">Bilbao</option>
+      <option value="Barcelona">Barcelona</option>
+      <option value="Valencia">Valencia</option>
+      <option value="Cáceres">Cáceres</option>
+      <option value="Vigo">Vigo</option>
+
+    </select>
     {weather && (
       <div>
-        <h3>Tiempo en Madrid</h3>
-        <p>
-          Temperatura {weather.main.temp}
-        </p>
-        <p>Humedad {weather.main.humidity}</p>
+        <h3>Tiempo en 📍 {city}</h3>
+        <p>🌡️ {weather.main.temp}</p>
+        <p>💧 {weather.main.humidity}</p>
+        <p>🌬️ {weather.wind.speed}</p>
+        <p>{weather.weather[0].decription}</p>
       </div>
     )}
     <main>
