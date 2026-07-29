@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getCars } from "../services/carService.js";
 import { getWeather } from "../services/weatherService.js";
 
@@ -60,7 +60,7 @@ function Home() {
         <p>🌡️ {weather.main.temp}</p>
         <p>💧 {weather.main.humidity}</p>
         <p>🌬️ {weather.wind.speed}</p>
-        <p>{weather.weather[0].decription}</p>
+        <p>{weather.weather[0].description}</p>
       </div>
     )}
     <main>
@@ -75,9 +75,10 @@ function Home() {
            <p>{car.description}</p>
            <img src={car.image} alt={`${car.brand} ${car.model}`} width="250" />
            <p>Estado {car.available ? " 🟢 Disponible" : " 🔴 No disponible"}</p>
+
            <br />
            <br />
-           <button disable={!car.available} onClick={() => navigate(`/cars/${car._id}`)}>{car.available ? "Reservar" : "No disponible"} </button>
+           <button disabled={!car.available} onClick={() => navigate(`/cars/${car._id}`)}>{car.available ? "Reservar" : "No disponible"} </button>
                      
            <hr />
            <br />

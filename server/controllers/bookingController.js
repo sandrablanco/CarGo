@@ -43,12 +43,20 @@ export const createBooking = async (req, res) => {
 
         await booking.save();
 
-        await Car.findByIdAndUpdate(
-             booking.car,
-           {
-             available: false,
+        const today = new Date();
+
+         if (
+            today >= new Date(startDate) &&
+            today <= new Date(endDate)
+          ) {
+
+             await Car.findByIdAndUpdate(
+               booking.car,
+               {
+                 available: false,
+                }
+              );
             }
-          );
 
         res.status(201).json({
             message: "Reserva creada correctamente",
@@ -61,3 +69,17 @@ export const createBooking = async (req, res) => {
          });
         }
         };
+
+export const getBookingsByCar = async (req, res) => {
+  try {
+    const bookings = await Booking.find({
+      car: req.params.id,
+    });
+
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};

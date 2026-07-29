@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createBooking } from "../services/bookingService";
 import { useParams, useNavigate } from "react-router-dom";
 import { getCarById } from "../services/carService";
+import { getBookingsByCar } from "../services/bookingService";
 
 function CarDetails() {
 const navigate = useNavigate();
@@ -9,6 +10,9 @@ const { id } = useParams();
 const [car, setCar] = useState(null);
 const [startDate, setStartDate] = useState("");
 const [endDate, setEndDate] = useState("");
+const [bookings, setBookings] = useState([]);
+
+
 useEffect(() => {
     getCarById(id)
       .then((data) => {
@@ -18,6 +22,13 @@ useEffect(() => {
         console.error(error);
       });
   }, [id]);
+
+useEffect(() => {
+   getBookingsByCar(id)
+     .then(setBookings)
+     .catch(console.error);
+  }, [id]);
+
 
   const handleBooking = async (e) => {
     e.preventDefault();
@@ -96,6 +107,21 @@ useEffect(() => {
         <button type="submit">Confirmar reserva</button>
 
       </form>
+      <hr />
+
+    <h2>📅 Fechas reservadas</h2>
+
+    {bookings.length === 0 ? (
+      <p>Este coche todavía no tiene reservas.</p>
+    ) : (
+      bookings.map((booking) => (
+        <p key={booking._id}>
+          📅 {new Date(booking.startDate).toLocaleDateString("es-ES")}
+          {" - "}
+          {new Date(booking.endDate).toLocaleDateString("es-ES")}
+        </p>
+      ))
+    )}
 
     </div>
   );

@@ -12,3 +12,11 @@ export const createBooking = async (booking) => {
         },
     });
 };
+
+export const getBookingsByCar = async (id) => {
+  const response = await axios.get(
+    `${API_URL}/car/${id}`
+  );
+
+  return response.data;
+};
