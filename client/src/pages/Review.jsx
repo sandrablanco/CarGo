@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createReview } from "../services/reviewService";
 
 function Review() {
   const [rating, setRating] = useState(5);
@@ -10,13 +11,24 @@ function Review() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log({
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    await createReview({
       rating,
       comment,
+      bookingExperience,
+      suggestion,
+      recommend
     });
 
     alert("¡Gracias por valorar tu experiencia!");
-  };
+  } catch (error) {
+    console.error(error);
+    alert("No se pudo enviar la valoración");
+  }
+};
 
   return (
     <div>
