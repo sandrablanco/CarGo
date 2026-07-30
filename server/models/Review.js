@@ -4,11 +4,13 @@ const reviewSchema = new mongoose.Schema({
   booking: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Booking",
+    required: true,
   },
 
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
 
   car: {
@@ -18,6 +20,7 @@ const reviewSchema = new mongoose.Schema({
 
   rating: {
     type: Number,
+    required: true,
     min: 1,
     max: 5,
   },
@@ -25,6 +28,23 @@ const reviewSchema = new mongoose.Schema({
   comment: {
     type: String,
   },
-});
+
+  
+  bookingExperience: {
+    type: String,
+  },
+
+  
+  suggestion: {
+    type: String,
+  },
+
+  
+  recommend: {
+    type: String,
+  },
+},
+{ timestamps: true });
+
 
 export default mongoose.model("Review", reviewSchema);

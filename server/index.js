@@ -5,8 +5,8 @@ import connectDB from "./config/db.js";
 import carRoutes from "./routes/carRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import weatherRoutes from "./routes/weatherRoutes.js";
-import bookingRoutes from "./routes/bookingRoutes.js"
-              
+import bookingRoutes from "./routes/bookingRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 import authMiddleware from "./middleware/authMiddleware.js";
 
 
@@ -23,7 +23,7 @@ app.use("/api/cars", carRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/weather", weatherRoutes);
-
+app.use("/api/reviews", reviewRoutes);
 
 
 app.get("/", (req, res) => {
