@@ -75,3 +75,19 @@ export const getBookingsByCar = async (req, res) => {
     });
   }
 };
+
+export const getPendingSurvey = async (req, res) => {
+  try {
+    const booking = await Booking.findOne({
+      user: req.user.id,
+      endDate: { $lt: new Date() },
+      surveyCompleted: false,
+    }).populate("car");
+
+    res.json(booking);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
