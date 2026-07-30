@@ -8,9 +8,6 @@ function Review() {
   const [recommend, setRecommend] = useState("");
   const [bookingExperience, setBookingExperience] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
  const handleSubmit = async (e) => {
   e.preventDefault();
 
