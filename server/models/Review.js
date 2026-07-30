@@ -29,17 +29,14 @@ const reviewSchema = new mongoose.Schema({
     type: String,
   },
 
-  
   bookingExperience: {
     type: String,
   },
 
-  
   suggestion: {
     type: String,
   },
 
-  
   recommend: {
     type: String,
   },

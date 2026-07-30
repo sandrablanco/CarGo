@@ -8,7 +8,8 @@ export const createReview = async (req, res) => {
       booking: req.body.booking,
       rating: req.body.rating,
       comment: req.body.comment,
-      improvement: req.body.improvement,
+      bookingExperience: req.body.bookingExperience,
+      suggestion: req.body.suggestion,
       recommend: req.body.recommend,
     });
 
