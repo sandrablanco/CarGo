@@ -4,9 +4,11 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import carRoutes from "./routes/carRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import weatherRoutes from "./routes/weatherRoutes.js"
-import authMiddleware from "./middleware/authMiddleware.js";
+import weatherRoutes from "./routes/weatherRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js"
+              
+import authMiddleware from "./middleware/authMiddleware.js";
+
 
 
 dotenv.config();

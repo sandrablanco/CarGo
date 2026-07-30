@@ -23,6 +23,7 @@ export const createBooking = async (req, res) => {
           }
          ]
         });
+        console.log("Reserva encontrada:", existingBooking);
         if (existingBooking) {
            return res.status(400).json({
              message: "Este coche ya está reservado para esas fechas."
