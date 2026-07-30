@@ -8,6 +8,7 @@ import weatherRoutes from "./routes/weatherRoutes.js"
 import authMiddleware from "./middleware/authMiddleware.js";
 import bookingRoutes from "./routes/bookingRoutes.js"
 
+
 dotenv.config();
 
 connectDB(); 

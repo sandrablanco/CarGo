@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Booking from "./pages/Booking";
 import CarDetails from "./pages/CarDetails";
+import Review from "./pages/Review";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cars/:id" element={<CarDetails />} />
+        <Route path="/review" element={<Review/>} />
      </Routes>
 
     </Router>
