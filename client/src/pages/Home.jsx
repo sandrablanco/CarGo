@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCars } from "../services/carService.js";
 import { getWeather } from "../services/weatherService.js";
+import { getPendingSurvey } from "../services/bookingService.js";
 
 
 function Home() {
   const [cars, setCars] = useState([]);
   const [weather, setWeather] = useState(null);
+  const [pendingSurvey, setPendingSurvey] = useState()
   const [city, setCity] = useState("Madrid");
   const navigate = useNavigate();
 
@@ -36,6 +38,15 @@ function Home() {
   });
   }, [city]);
 
+  useEffect(() => {
+  getPendingSurvey()
+    .then((data) => {
+      console.log(data);
+      setPendingSurvey(data);
+    })
+    .catch(console.error);
+}, []);
+
 
   return (
     <>
@@ -54,6 +65,25 @@ function Home() {
       <option value="Vigo">Vigo</option>
 
     </select>
+    {pendingSurvey && (
+    <div>
+    <h2>⭐ Tienes una valoración pendiente</h2>
+
+    <p>
+      {pendingSurvey.car.brand} {pendingSurvey.car.model}
+    </p>
+     
+     <button
+      onClick={() =>
+      navigate("/review", {
+      state: {
+        bookingId: pendingSurvey._id,
+        },
+       })
+      }>Responder encuesta</button>
+   
+    </div>
+    )}
     {weather && (
       <div>
         <h3>Tiempo en 📍 {city}</h3>

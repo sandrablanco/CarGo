@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { createReview } from "../services/reviewService";
 
 function Review() {
+  const location = useLocation();
+  const bookingId = location.state?.bookingId;
+
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [suggestion, setSuggestion] = useState("");
@@ -13,6 +17,7 @@ function Review() {
 
   try {
     await createReview({
+      booking: bookingId,
       rating,
       comment,
       bookingExperience,

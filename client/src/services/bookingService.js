@@ -20,3 +20,18 @@ export const getBookingsByCar = async (id) => {
 
   return response.data;
 };
+
+export const getPendingSurvey = async () => {
+  const token = localStorage.getItem("token");
+
+  const response = await axios.get(
+    `${API_URL}/pending-survey`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};
