@@ -35,3 +35,19 @@ export const getPendingSurvey = async () => {
 
   return response.data;
 };
+
+export const getMyBookings = async () => {
+
+  const token = localStorage.getItem("token");
+
+  const response = await axios.get(
+    `${API_URL}/my-bookings`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return response.data;
+};

@@ -56,6 +56,18 @@ function Home() {
     <h2>Tu viaje empieza aqui. Servicio de calidad, kilómetros de confianza</h2>
     </div>
     </header>
+    <div className="actions">
+
+  <button onClick={() => navigate("/my-bookings")}>
+    🚗 Mis reservas
+  </button>
+
+  <button onClick={handleLogout}>
+    Cerrar sesión
+  </button>
+
+</div>
+
     <select value= {city} onChange={(e) => setCity(e.target.value)}>
       <option value="Madrid">Madrid</option>
       <option value="Bilbao">Bilbao</option>

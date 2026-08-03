@@ -61,3 +61,25 @@ function MyBookings() {
             <p>
               Estado:
               {" "}
+              {booking.status === "pending" && "🟡 Pendiente"}
+
+              {booking.status === "confirmed" && "🟢 Confirmada"}
+
+              {booking.status === "cancelled" && "🔴 Cancelada"}
+
+            </p>
+
+            <hr />
+
+          </div>
+
+        ))
+
+   )}
+
+ </div>
+
+);
+}
+
+export default MyBookings;

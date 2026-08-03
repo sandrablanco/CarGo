@@ -92,3 +92,23 @@ export const getPendingSurvey = async (req, res) => {
     });
   }
 };
+
+export const getMyBookings = async (req, res) => {
+
+  try {
+
+    const bookings = await Booking.find({
+      user: req.user.id,
+    }).populate("car"); /*access to brand, model and image of the car*/
+
+    res.json(bookings);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+
+};
