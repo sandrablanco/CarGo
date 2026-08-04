@@ -106,6 +106,7 @@ function Register() {
         />
 
         <button type="submit">Registrarse</button>
+        
        </form>
     </div>
  );

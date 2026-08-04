@@ -25,10 +25,18 @@ function Navbar() {
         <>
         <span>👋 Hola, {user.name}</span>
         {" | "}
+        <Link to="/">🏠 Inicio</Link>
+
+        {" | "}
+
+        <Link to="/my-bookings">🚗 Mis reservas</Link>
+
+        {" | "}
        
         <button onClick={logout}>
         Cerrar sesión
         </button>
+        
         </>
          )}
       </div>

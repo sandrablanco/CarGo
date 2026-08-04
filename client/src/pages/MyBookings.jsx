@@ -18,7 +18,7 @@ function MyBookings() {
   return (
     <div>
 
-      <h1>🚗 Mis reservas</h1>
+      <h1>Mis reservas</h1>
 
       {bookings.length === 0 ? (
 
