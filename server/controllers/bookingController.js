@@ -1,6 +1,8 @@
 import Booking from "../models/Booking.js";
 import Car from "../models/Car.js";
 import authMiddleware from "../middleware/authMiddleware.js";
+import User from "../models/User.js";
+
 
 export const createBooking = async (req, res) => {
     try {
@@ -43,6 +45,7 @@ export const createBooking = async (req, res) => {
         });
 
         await booking.save();
+
 
         const today = new Date();
 

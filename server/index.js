@@ -18,12 +18,15 @@ connectDB();
 const app = express();
 
 app.use(cors());
+
+
 app.use(express.json());
 app.use("/api/cars", carRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/weather", weatherRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/chat", chatRoutes);
 
 
 app.get("/", (req, res) => {

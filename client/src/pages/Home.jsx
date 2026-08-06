@@ -5,19 +5,21 @@ import { getWeather } from "../services/weatherService.js";
 import { getPendingSurvey } from "../services/bookingService.js";
 
 
+
 function Home() {
   const [cars, setCars] = useState([]);
   const [weather, setWeather] = useState(null);
   const [pendingSurvey, setPendingSurvey] = useState()
   const [city, setCity] = useState("Madrid");
   const navigate = useNavigate();
-
+  
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
     navigate("/");
   }; 
+
 
   useEffect(() => {
     getCars()
@@ -49,6 +51,7 @@ function Home() {
 
 
   return (
+   
     <>
     <header className="hero">
     <div className="logo-title">
@@ -105,6 +108,7 @@ function Home() {
         <p>{weather.weather[0].description}</p>
       </div>
     )}
+     
     <main>
        <h3>Coches disponibles</h3>
        

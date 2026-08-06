@@ -63,6 +63,7 @@ export const login = async (req, res) => {
       });
     }
     //create token
+
     const token = jwt.sign(
       {
         id: user._id,
@@ -90,3 +91,5 @@ export const login = async (req, res) => {
     });
   }
 };
+
+
