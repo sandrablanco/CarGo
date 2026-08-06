@@ -75,9 +75,20 @@ export const login = async (req, res) => {
       }
     );
 
+      res.cookie("token", token, {
+         httpOnly: true,
+         secure: false,      // Set to true if using HTTPS production
+         sameSite: "lax",
+         maxAge: 24 * 60 * 60 * 1000,
+        });
+
+      res.json({
+       user,
+     });
+
     res.status(200).json({
       message: "Login correcto",
-      token,
+    
       user: {
       id: user._id,
       name: user.name,
@@ -92,4 +103,12 @@ export const login = async (req, res) => {
   }
 };
 
+export const logout = (req, res) => {
 
+  res.clearCookie("token");
+
+  res.status(200).json({
+    message: "Sesión cerrada correctamente",
+  });
+
+};

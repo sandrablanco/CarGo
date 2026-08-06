@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { getCars } from "../services/carService.js";
 import { getWeather } from "../services/weatherService.js";
 import { getPendingSurvey } from "../services/bookingService.js";
+
 
 
 
@@ -13,12 +15,25 @@ function Home() {
   const [city, setCity] = useState("Madrid");
   const navigate = useNavigate();
   
-  const handleLogout = () => {
-    localStorage.removeItem("token");
+  
+   const handleLogout = async () => {
+  try {
+    await axios.post(
+      "http://localhost:3000/api/auth/logout",
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+
     localStorage.removeItem("user");
 
-    navigate("/");
-  }; 
+    navigate("/login");
+
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
   useEffect(() => {
@@ -108,7 +123,7 @@ function Home() {
         <p>{weather.weather[0].description}</p>
       </div>
     )}
-     
+    <ChatBot />
     <main>
        <h3>Coches disponibles</h3>
        

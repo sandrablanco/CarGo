@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import carRoutes from "./routes/carRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import weatherRoutes from "./routes/weatherRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
 import authMiddleware from "./middleware/authMiddleware.js";
 
 
@@ -17,8 +19,14 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
-
+/*app.use(cors());*/
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 
 app.use(express.json());
 app.use("/api/cars", carRoutes);

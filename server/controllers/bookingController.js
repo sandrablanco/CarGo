@@ -1,8 +1,11 @@
+
 import Booking from "../models/Booking.js";
 import Car from "../models/Car.js";
 import authMiddleware from "../middleware/authMiddleware.js";
+import transporter from "../services/emailService.js";
 import User from "../models/User.js";
-
+import { generateInvoicePDF } from "../pdf/invoicePdf.js";
+import { generateInsurancePDF } from "../pdf/generateInsurancePDF.js";
 
 export const createBooking = async (req, res) => {
     try {
@@ -34,7 +37,16 @@ export const createBooking = async (req, res) => {
        // days of booking
        const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
        // total price
-       const totalPrice = days * selectedCar.pricePerDay;
+       const rentalPrice = days * selectedCar.pricePerDay;
+
+       let insurancePrice = days * 30;
+
+       // Descuento del 25% si reserva 10 días o más
+      if (days >= 10) {
+        insurancePrice = insurancePrice * 0.75;
+      }
+
+       const totalPrice = rentalPrice + insurancePrice;
        //create booking
        const booking = new Booking({
           user: req.user.id,
@@ -42,10 +54,64 @@ export const createBooking = async (req, res) => {
           startDate,
           endDate,
           totalPrice,
+          insurancePrice : {
+            type: Number,
+            default: 0,
+          },
         });
 
         await booking.save();
 
+      
+        //send email to user
+        const user = await User.findById(req.user.id);
+
+          //pdfs send to email
+        const invoicePath = await generateInvoicePDF(booking, selectedCar, user);
+        const insurancePath = await generateInsurancePDF();
+
+        await transporter.sendMail({
+         from: `"CarGo" <${process.env.EMAIL_USER}>`,
+         to: user.email,
+         subject: "🚗 Reserva confirmada",
+
+           html: `
+          <h1>¡Gracias por confiar en CarGo!</h1>
+
+          <p>Hola <strong>${user.name}</strong>.</p>
+
+          <p>Tu reserva ha sido confirmada correctamente.</p>
+
+          <hr>
+
+          <p><strong>Vehículo:</strong> ${selectedCar.brand} ${selectedCar.model}</p>
+
+          <p><strong>Inicio:</strong> ${startDate}</p>
+
+         <p><strong>Fin:</strong> ${endDate}</p>
+
+         <p><strong>Total:</strong> ${totalPrice.toFixed(2)} €</p>
+
+        <hr>
+
+        <p>Adjuntamos la factura y las condiciones del seguro.</p>
+
+        <p>¡Te esperamos!</p>
+
+       <h3>Equipo CarGo 🚗</h3>
+      `,
+
+        attachments: [
+       {
+        filename: "Factura.pdf",
+        path: invoicePath,
+       },
+       {
+        filename: "Condiciones_Seguro.pdf",
+        path: insurancePath,
+      },
+     ],
+    });
 
         const today = new Date();
 
