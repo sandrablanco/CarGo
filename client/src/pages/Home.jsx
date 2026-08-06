@@ -4,6 +4,7 @@ import axios from "axios";
 import { getCars } from "../services/carService.js";
 import { getWeather } from "../services/weatherService.js";
 import { getPendingSurvey } from "../services/bookingService.js";
+import ChatBot from "../components/ChatBot";
 
 
 
