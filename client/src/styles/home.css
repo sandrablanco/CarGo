@@ -1,0 +1,27 @@
+.hero {
+  background: linear-gradient(135deg, #111827, #2563eb);
+  color: white;
+  padding: 70px 30px;
+}
+
+.cars-section {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 25px;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  );
+  gap: 25px;
+}
+
+.car-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}

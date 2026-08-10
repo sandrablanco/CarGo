@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { logout as logoutService } from "../services/authService";
+import "../styles/navbar.css";
 
 function Navbar() {
   const user = JSON.parse(localStorage.getItem("user"));
