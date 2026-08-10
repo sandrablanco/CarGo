@@ -36,17 +36,8 @@ export const createBooking = async (req, res) => {
         }
        // days of booking
        const days = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
-       // total price
-       const rentalPrice = days * selectedCar.pricePerDay;
 
-       let insurancePrice = days * 30;
-
-       // Descuento del 25% si reserva 10 días o más
-      if (days >= 10) {
-        insurancePrice = insurancePrice * 0.75;
-      }
-
-       const totalPrice = rentalPrice + insurancePrice;
+       const totalPrice = days * selectedCar.pricePerDay;
        //create booking
        const booking = new Booking({
           user: req.user.id,
@@ -54,12 +45,9 @@ export const createBooking = async (req, res) => {
           startDate,
           endDate,
           totalPrice,
-          insurancePrice : {
-            type: Number,
-            default: 0,
-          },
+          
         });
-
+        
         await booking.save();
 
       
