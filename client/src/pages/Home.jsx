@@ -125,7 +125,9 @@ function Home() {
         <p>{weather.weather[0].description}</p>
       </div>
     )}
+   
     <ChatBot />
+    
     <main className="cars-section">
      
      <h3>Coches disponibles</h3>

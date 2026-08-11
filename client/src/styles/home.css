@@ -42,6 +42,49 @@
   margin-bottom: 30px;
 }
 
+.chat-header {
+  background:#293c69;
+  color: white;
+
+  padding: 12px;
+  text-align: center;
+
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.chatbot {
+      position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  width: 280px;
+  height: 360px;
+
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+  z-index: 9999;
+
+  overflow: hidden;
+
+
+  }
+
+  .chat-messages {
+  height: 250px;
+
+  padding: 10px;
+
+  overflow-y: auto;
+
+  font-size: 14px;
+}
+
+
 .cars-carousel {
   position: relative;
   max-width: 1200px;
