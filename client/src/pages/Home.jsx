@@ -126,11 +126,11 @@ function Home() {
       </div>
     )}
     <ChatBot />
-    <main>
+    <main className="cars-section">
        <h3>Coches disponibles</h3>
-       <div className="cars-grid">
+       <div className="cars-car">
        {cars.map((car) => (
-         <div key={car._id}>
+         <div className="car-card" key={car._id}>
            <h4>{car.brand} {car.model}</h4>
            <p>Año: {car.year}</p>
            <p>Tipo de combustible: {car.fuelType}</p>
