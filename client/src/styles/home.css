@@ -25,23 +25,170 @@
 }
 
 .cars-section {
+    background: linear-gradient(
+    135deg,
+    #183b5b,
+    #2f6f9f,
+    #1d4567 );
+    padding: 50px 30px;
+    margin-top: 40px;
+}
+
+
+.cars-section > h3 {
+  color: white;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.cars-carousel {
+  position: relative;
   max-width: 1200px;
-  margin: 50px auto;
-  padding: 0 25px;
+  margin: auto;
+  display: flex;
+  align-items: center;
 }
 
 .cars-grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(280px, 1fr)
-  );
+  display: flex;
   gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  padding: 20px 10px;
+
+  scrollbar-width: none;
+
+  width: 100%;
+}
+
+.cars-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .car-card {
+  flex: 0 0 300px;
+
   background: white;
-  border-radius: 16px;
+
+  border-radius: 18px;
+
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.25);
+
+  scroll-snap-align: center;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.car-card img {
+  width: 100%;
+  height: 200px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.car-info {
+  padding: 20px;
+}
+
+.car-info h4 {
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.car-info p {
+  color: #555;
+  margin: 8px 0;
+}
+
+.car-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 20px;
+}
+
+.car-bottom strong {
+  font-size: 18px;
+  color: #183b5b;
+}
+
+.car-bottom button {
+  border: none;
+
+  background: #2563eb;
+
+  color: white;
+
+  padding: 10px 16px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+.car-bottom button:hover {
+  background: #1d4ed8;
+}
+
+.carousel-button {
+  position: absolute;
+
+  z-index: 10;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: white;
+
+  color: #183b5b;
+
+  font-size: 32px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.25);
+
+  transition: 0.2s;
+}
+
+.carousel-button:hover {
+  transform: scale(1.1);
+}
+
+.carousel-button.left {
+  left: -20px;
+}
+
+.carousel-button.right {
+  right: -20px;
 }

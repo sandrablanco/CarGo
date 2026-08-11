@@ -127,29 +127,95 @@ function Home() {
     )}
     <ChatBot />
     <main className="cars-section">
-       <h3>Coches disponibles</h3>
-       <div className="cars-car">
-       {cars.map((car) => (
-         <div className="car-card" key={car._id}>
-           <h4>{car.brand} {car.model}</h4>
-           <p>Año: {car.year}</p>
-           <p>Tipo de combustible: {car.fuelType}</p>
-           <p>Precio: {car.pricePerDay.toFixed(2)} €</p>
-           <p>{car.description}</p>
-           <img src={car.image} alt={`${car.brand} ${car.model}`} width="250" />
-           
-           <br />
-           <br />
-           <button  onClick={() => navigate(`/cars/${car._id}`)}>Reservar</button>
-                     
-           <hr />
-           <br />
-           <br />
-          
-         </div>
-       ))}
-       </div>
-    </main>
+     
+     <h3>Coches disponibles</h3>
+
+    <div className="cars-carousel">
+
+     {/* <- */}
+    <button
+      className="carousel-button left"
+      onClick={() => {
+        document
+          .querySelector(".cars-grid")
+          .scrollBy({
+            left: -350,
+            behavior: "smooth",
+          });
+      }}
+     >
+      ‹
+     </button>
+
+
+    {/* Carrusel de coches */}
+    <div className="cars-grid">
+
+      {cars.map((car) => (
+
+        <div className="car-card" key={car._id}>
+
+          <img
+            src={car.image}
+            alt={`${car.brand} ${car.model}`}
+          />
+
+          <div className="car-info">
+
+            <h4>
+              {car.brand} {car.model}
+            </h4>
+
+            <p>📅 Año: {car.year}</p>
+
+            <p>⛽ {car.fuelType}</p>
+
+            <p>{car.description}</p>
+
+            <div className="car-bottom">
+
+              <strong>
+                {car.pricePerDay.toFixed(2)} €/día
+              </strong>
+
+              <button
+                onClick={() =>
+                  navigate(`/cars/${car._id}`)
+                }
+              >
+                Reservar
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      ))}
+
+    </div>
+
+
+    {/* -> */}
+    <button
+      className="carousel-button right"
+      onClick={() => {
+        document
+          .querySelector(".cars-grid")
+          .scrollBy({
+            left: 350,
+            behavior: "smooth",
+          });
+      }}
+    >
+      ›
+    </button>
+
+  </div>
+
+</main>
+      
     </>
   )
 }
