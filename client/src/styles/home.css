@@ -4,6 +4,26 @@
   padding: 70px 30px;
 }
 
+.logo-title {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.logo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.logo-title h2 {
+  font-size: 30px;
+  max-width: 600px;
+}
+
 .cars-section {
   max-width: 1200px;
   margin: 50px auto;

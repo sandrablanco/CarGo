@@ -128,7 +128,7 @@ function Home() {
     <ChatBot />
     <main>
        <h3>Coches disponibles</h3>
-       
+       <div className="cars-grid">
        {cars.map((car) => (
          <div key={car._id}>
            <h4>{car.brand} {car.model}</h4>
@@ -145,8 +145,10 @@ function Home() {
            <hr />
            <br />
            <br />
+          
          </div>
        ))}
+       </div>
     </main>
     </>
   )
